@@ -34,7 +34,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Physics World
         physicsWorld.contactDelegate = self
-        physicsWorld.gravity = CGVector(dx: 0, dy: -0.02)
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+//        physicsWorld
         
         createShip()
     }
@@ -52,7 +53,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createMeteor(){
-        
+        let meteor = Meteor()
+//        let meteor2 = Meteor()
+//        let meteor3 = Meteor()
+//        let meteor4 = Meteor()
+        meteor.placeMeteor(scene: self)
+        meteor.zPosition = 2
+        self.addChild(meteor)
     }
     
     
@@ -76,32 +83,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             startTouchPos = t.location(in: self)
             currentTouchPos = startTouchPos
         }
+        ship.physicsBody?.linearDamping = 0
     }
 //    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        ship.physicsBody?.applyImpulse(CGVector(dx: 3, dy: 0))
+//        ship.physicsBody?.applyImpulse(CGVector(dx: 3, dy: 0))
 //        ship.physicsBody?.velocity = CGVector(dx: 2, dy: 0)
 //        print("TOuches")
-//        for t: AnyObject in touches{
-//            currentTouchPos = t.location(in: self)
-//        }
+        for t: AnyObject in touches{
+            currentTouchPos = t.location(in: self)
+        }
 //        let dxVectorValue = (-1) * (startTouchPos.x - currentTouchPos.x)
 //        let dyVectorValue = (-1) * (startTouchPos.y - currentTouchPos.y)
-//
+
 //        ship.moveShip(dxVectorValue: dxVectorValue, dyVectorValue: dyVectorValue, duration: dt)
+        
+//        let shipPos = ship.position
+//        print("c:\(currentTouchPos.x) s:\(startTouchPos.x)")
+        if currentTouchPos.x < startTouchPos.x{
+            ship.physicsBody?.velocity = CGVector(dx: -10, dy: 0)
+        }else if currentTouchPos.x > startTouchPos.x{
+            ship.physicsBody?.velocity = CGVector(dx: 10, dy: 0)
+        }
+        
+        if currentTouchPos.y < startTouchPos.y{
+            ship.physicsBody?.velocity = CGVector(dx: 0, dy: -10)
+        }else if currentTouchPos.x > startTouchPos.x{
+            ship.physicsBody?.velocity = CGVector(dx: 0, dy: 10)
+        }
+        
+        
+//        if currentTouchPos.x < startTouchPos.x{
+//            ship.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+//            ship.physicsBody?.velocity = CGVector(dx: (-0.5) * (startTouchPos.x - currentTouchPos.x), dy: -0.5 * (startTouchPos.y-currentTouchPos.y))
+//        }else if currentTouchPos.x > startTouchPos.x{
+//            ship.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+//            ship.physicsBody?.velocity = CGVector(dx: (-0.5) * (startTouchPos.x - currentTouchPos.x), dy: -0.5 * (startTouchPos.y-currentTouchPos.y))
+//        }
+        
+//        ship.physicsBody?.velocity = CGVector(dx: (-0.5) * (startTouchPos.x - currentTouchPos.x), dy: -0.5 * (startTouchPos.y-currentTouchPos.y))
+
 
 
     }
 //    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("TOuch end")
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-        ship.removeAllActions()
-        ship.stopMove()
+        ship.physicsBody?.linearDamping = CGFloat(floatLiteral: 0.5)
+//        ship.removeAllActions()
+//        ship.stopMove()
+        
+        
     }
-//    
-//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
 
 }

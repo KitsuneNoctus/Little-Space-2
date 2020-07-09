@@ -31,6 +31,9 @@ class Ship: SKSpriteNode {
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.linearDamping = 0
+        self.physicsBody?.restitution = 0
+        self.physicsBody?.mass = 1000
         self.physicsBody?.categoryBitMask = PhysicsCategory.Ship
         
     }
@@ -46,9 +49,6 @@ class Ship: SKSpriteNode {
         let movement = CGVector(dx: dxVectorValue, dy: dyVectorValue)
         let moveShip = SKAction.applyForce(movement, duration: 1/duration)
         self.run(moveShip)
-//        let moveActionVector = CGVectorMake(dxVectorValue, dyVectorValue)
-//        let movePlayerAction = SKAction.applyForce(moveActionVector, duration: 1/duration)
-//        self.runAction(movePlayerAction)
         
     }
     
@@ -60,15 +60,6 @@ class Ship: SKSpriteNode {
         let wait = SKAction.wait(forDuration: delay)
         let stopping = SKAction.sequence([wait, stop])
         self.run(stopping)
-//        let stopAction: SKAction = SKAction.runBlock{
-//            self.physicsBody?.velocity = CGVectorMake(0, 0)
-//         }
-//
-//        let pause: SKAction = SKAction.waitForDuration(delayTime)
-//
-//        let stopSequence: SKAction = SKAction.sequence([pause,stopAction])
-//
-//        self.runAction(stopSequence)
 
     }
 }

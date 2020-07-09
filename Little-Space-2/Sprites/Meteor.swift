@@ -41,8 +41,9 @@ class Meteor: SKSpriteNode {
     
     func placeMeteor(scene: SKScene){
         if let view = scene.view{
-            position.x = CGFloat.random(in: 0...view.bounds.width)
-            position.y = view.bounds.height
+//            position.x = view.bounds.width
+//            position.x = CGFloat.random(in: 0...view.bounds.width)
+//            position.y = view.bounds.height
         }
     }
 }
