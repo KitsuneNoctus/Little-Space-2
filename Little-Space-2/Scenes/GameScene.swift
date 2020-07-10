@@ -111,7 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 //    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        print("TOuches")
+        //        print("TOuches")
         for t: AnyObject in touches{
             currentTouchPos = t.location(in: self)
         }
@@ -137,15 +137,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             ship.zRotation = angle - 1.570796
+//            ship.startEngine()
             
-//            ship.physicsBody?.applyForce(CGVector(dx: 1, dy: 0), at: ship.position)
+            //            ship.physicsBody?.applyForce(CGVector(dx: 1, dy: 0), at: ship.position)
         }
-//        
+        //
         
-//        ship.physicsBody?.velocity = CGVector(dx: (-0.5) * (startTouchPos.x - currentTouchPos.x), dy: -0.5 * (startTouchPos.y-currentTouchPos.y))
-
-
-
+        //        ship.physicsBody?.velocity = CGVector(dx: (-0.5) * (startTouchPos.x - currentTouchPos.x), dy: -0.5 * (startTouchPos.y-currentTouchPos.y))
+        
+        
+        
     }
 //    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

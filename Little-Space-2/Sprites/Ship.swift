@@ -13,6 +13,9 @@ import SpriteKit
 import GameplayKit
 
 class Ship: SKSpriteNode {
+    
+    let fireEmitter = SKEmitterNode(fileNamed: "rocket.sks")!
+    
     init() {
         let texture = SKTexture(imageNamed: "shipV1")
         let color = UIColor.clear
@@ -20,6 +23,10 @@ class Ship: SKSpriteNode {
         super.init(texture: texture, color: color, size: size)
         self.name = "ship"
         self.zPosition = 4
+        
+        fireEmitter.position = CGPoint(x: self.position.x, y: self.position.y - self.size.height/2)
+        fireEmitter.zPosition = -1
+        self.addChild(fireEmitter)
         
         //            let fireEmitter = SKEmitterNode(fileNamed: "boosterFire.sks")!
         //            fireEmitter.position = CGPoint(x: self.position.x, y: self.position.y - self.size.height/2)
@@ -39,6 +46,10 @@ class Ship: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func startEngine(){
+        
     }
     
     //MARK: Check Bounds
