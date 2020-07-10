@@ -16,6 +16,7 @@
 		3F4EAA6124B53C4200F07956 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EAA5F24B53C4200F07956 /* LaunchScreen.storyboard */; };
 		3F4EAA6C24B53C4200F07956 /* Little_Space_2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EAA6B24B53C4200F07956 /* Little_Space_2Tests.swift */; };
 		3F4EAA7724B53C4200F07956 /* Little_Space_2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EAA7624B53C4200F07956 /* Little_Space_2UITests.swift */; };
+		3F62ACE824B7F2B400248780 /* storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62ACE724B7F2B400248780 /* storage.swift */; };
 		3F679E5A24B6CA7300B2E388 /* rocket.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F679E5824B6CA7300B2E388 /* rocket.sks */; };
 		3F679E5B24B6CA7300B2E388 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F679E5924B6CA7300B2E388 /* Assets.xcassets */; };
 		3F679E5D24B6CAE300B2E388 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F679E5C24B6CAE300B2E388 /* Ship.swift */; };
@@ -60,6 +61,7 @@
 		3F4EAA7224B53C4200F07956 /* Little-Space-2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Little-Space-2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4EAA7624B53C4200F07956 /* Little_Space_2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Little_Space_2UITests.swift; sourceTree = "<group>"; };
 		3F4EAA7824B53C4200F07956 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F62ACE724B7F2B400248780 /* storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storage.swift; sourceTree = "<group>"; };
 		3F679E5824B6CA7300B2E388 /* rocket.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = rocket.sks; sourceTree = "<group>"; };
 		3F679E5924B6CA7300B2E388 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F679E5C24B6CAE300B2E388 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		3F4EAA4F24B53C3F00F07956 /* Little-Space-2 */ = {
 			isa = PBXGroup;
 			children = (
+				3F62ACE624B7F2A300248780 /* stuff */,
 				3F679E6C24B6EED000B2E388 /* Scenes */,
 				3F679E6924B6DEA900B2E388 /* Controller */,
 				3F679E6624B6D90400B2E388 /* Model */,
@@ -151,6 +154,14 @@
 				3F4EAA7824B53C4200F07956 /* Info.plist */,
 			);
 			path = "Little-Space-2UITests";
+			sourceTree = "<group>";
+		};
+		3F62ACE624B7F2A300248780 /* stuff */ = {
+			isa = PBXGroup;
+			children = (
+				3F62ACE724B7F2B400248780 /* storage.swift */,
+			);
+			path = stuff;
 			sourceTree = "<group>";
 		};
 		3F679E5524B6C93A00B2E388 /* Sprites */ = {
@@ -349,6 +360,7 @@
 				3F4EAA5124B53C3F00F07956 /* AppDelegate.swift in Sources */,
 				3F679E6324B6CF4E00B2E388 /* Comet.swift in Sources */,
 				3F679E6524B6CF6300B2E388 /* PowerUps.swift in Sources */,
+				3F62ACE824B7F2B400248780 /* storage.swift in Sources */,
 				3F679E6124B6CB2E00B2E388 /* Meteor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

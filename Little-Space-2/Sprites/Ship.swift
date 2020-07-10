@@ -33,13 +33,57 @@ class Ship: SKSpriteNode {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.linearDamping = 0
         self.physicsBody?.restitution = 0
-        self.physicsBody?.mass = 1000
         self.physicsBody?.categoryBitMask = PhysicsCategory.Ship
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: Check Bounds
+//    func checkBounds(scene: SKScene){
+//        let bottomLeft = CGPoint(x: 0, y: scen)
+//    }
+    
+    func boundsCheckPlayer(playableArea: CGRect){
+        let bottomLeft = CGPoint(x: 0, y: playableArea.minY)
+        let topRight = CGPoint(x: playableArea.size.width, y: playableArea.maxY)
+
+        if(self.position.x <= bottomLeft.x){
+            self.position.x = topRight.x
+//            self.position.x = bottomLeft.x
+        }
+
+//        if(self.position.x >= topRight.x){
+//            self.position.x = bottomLeft.x
+////            self.position.x = topRight.x
+//        }
+
+        if(self.position.y <= bottomLeft.y){
+            self.position.y = topRight.y
+//            self.position.y = bottomLeft.y
+        }
+//
+//        if(self.position.y >= topRight.y){
+//            self.position.y = bottomLeft.y
+////            self.position.y = topRight.y
+//        }
+    }
+    
+    func boundsCheckPlayer2(playableArea: CGRect){
+        let bottomLeft = CGPoint(x: 0, y: playableArea.minY)
+        let topRight = CGPoint(x: playableArea.size.width, y: playableArea.maxY)
+        
+        if(self.position.x >= topRight.x){
+            self.position.x = bottomLeft.x
+            //            self.position.x = topRight.x
+        }
+        
+        if(self.position.y >= topRight.y){
+            self.position.y = bottomLeft.y
+            //            self.position.y = topRight.y
+        }
     }
     
     
