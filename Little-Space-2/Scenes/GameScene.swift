@@ -53,6 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         createShip()
         createJoy()
+        createButton()
         
     }
     
@@ -92,6 +93,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(ball)
     }
     
+    func createButton(){
+        let buttonTexture = SKTexture(imageNamed: "ball")
+        let button = ButtonNode(normalTexture: buttonTexture, selectedTexture: buttonTexture, disabledTexture: buttonTexture)
+        button.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameScene.fire))
+        
+        button.setButtonLabel(title: "Fire", font: "Helvetica", fontSize: 15)
+        button.size = CGSize(width: 80, height: 80)
+        button.position = CGPoint(x: self.frame.width - 70, y: 70)
+        button.zPosition = 20
+        button.name = "button"
+        self.addChild(button)
+    }
+        
+    
     
     //MARK: Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -129,6 +144,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let xDist:CGFloat = sin(angle - 1.570796) * length
             let yDist:CGFloat = cos(angle - 1.570796) * length
+            print(xDist)
+            print(yDist)
             
             if base.frame.contains(currentTouchPos){
                 ball.position = currentTouchPos
@@ -137,11 +154,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             ship.zRotation = angle - 1.570796
+            
+//            ship.move(velocity: CGPoint(x: xDist + ship.position.x, y: yDist + ship.position.y))
 //            ship.startEngine()
             
-            //            ship.physicsBody?.applyForce(CGVector(dx: 1, dy: 0), at: ship.position)
+//                        ship.physicsBody?.applyForce(CGVector(dx: 1, dy: 0), at: ship.position)
+//            ship.physicsBody?.angularVelocity = angle - 1.570796
+            
         }
-        //
         
         //        ship.physicsBody?.velocity = CGVector(dx: (-0.5) * (startTouchPos.x - currentTouchPos.x), dy: -0.5 * (startTouchPos.y-currentTouchPos.y))
         
@@ -161,6 +181,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         
+    }
+    
+    //MARK: Actions
+    @objc func fire(){
+        let bullet = Bullet()
+        bullet.position = ship.position
+        bullet.zRotation = ship.zRotation
+        bullet.zPosition = ship.zPosition - 1
+        
+//        let xDist:CGFloat = sin(angle - 1.570796) * length
+//        let yDist:CGFloat = cos(angle - 1.570796) * length
+        
+        let action = SKAction.move(to: CGPoint(x: 100 * cos(bullet.zRotation) + bullet.position.x, y: 100 * sin(bullet.zRotation) + bullet.position.y), duration: 1)
+        let actionDone = SKAction.removeFromParent()
+        bullet.run(SKAction.sequence([action, actionDone]))
+    
+        self.addChild(bullet)
     }
     
     

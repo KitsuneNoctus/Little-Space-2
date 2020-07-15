@@ -52,6 +52,11 @@ class Ship: SKSpriteNode {
         
     }
     
+    func move(velocity: CGPoint){
+        let amountToMove = CGPoint(x: velocity.x, y: velocity.y)
+        position = CGPoint(x: position.x + amountToMove.x, y: position.y + amountToMove.y)
+    }
+    
     //MARK: Check Bounds
 //    func checkBounds(scene: SKScene){
 //        let bottomLeft = CGPoint(x: 0, y: scen)
@@ -61,37 +66,29 @@ class Ship: SKSpriteNode {
         let bottomLeft = CGPoint(x: 0, y: playableArea.minY)
         let topRight = CGPoint(x: playableArea.size.width, y: playableArea.maxY)
 
-        if(self.position.x <= bottomLeft.x){
+        if(self.position.x < bottomLeft.x){
             self.position.x = topRight.x
 //            self.position.x = bottomLeft.x
         }
 
-//        if(self.position.x >= topRight.x){
-//            self.position.x = bottomLeft.x
-////            self.position.x = topRight.x
-//        }
 
-        if(self.position.y <= bottomLeft.y){
+        if(self.position.y < bottomLeft.y){
             self.position.y = topRight.y
 //            self.position.y = bottomLeft.y
         }
-//
-//        if(self.position.y >= topRight.y){
-//            self.position.y = bottomLeft.y
-////            self.position.y = topRight.y
-//        }
+
     }
     
     func boundsCheckPlayer2(playableArea: CGRect){
         let bottomLeft = CGPoint(x: 0, y: playableArea.minY)
         let topRight = CGPoint(x: playableArea.size.width, y: playableArea.maxY)
         
-        if(self.position.x >= topRight.x){
+        if(self.position.x > topRight.x){
             self.position.x = bottomLeft.x
             //            self.position.x = topRight.x
         }
         
-        if(self.position.y >= topRight.y){
+        if(self.position.y > topRight.y){
             self.position.y = bottomLeft.y
             //            self.position.y = topRight.y
         }

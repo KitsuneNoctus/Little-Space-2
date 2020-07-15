@@ -26,6 +26,8 @@
 		3F679E6524B6CF6300B2E388 /* PowerUps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F679E6424B6CF6300B2E388 /* PowerUps.swift */; };
 		3F679E6824B6D91200B2E388 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F679E6724B6D91200B2E388 /* PhysicsCategory.swift */; };
 		3F679E6B24B6DEDB00B2E388 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F679E6A24B6DEDB00B2E388 /* HomeViewController.swift */; };
+		3FADE22224BE77780031728D /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADE22124BE77780031728D /* ButtonNode.swift */; };
+		3FADE22624BE78100031728D /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADE22524BE78100031728D /* Bullet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		3F679E6424B6CF6300B2E388 /* PowerUps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUps.swift; sourceTree = "<group>"; };
 		3F679E6724B6D91200B2E388 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		3F679E6A24B6DEDB00B2E388 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3FADE22124BE77780031728D /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
+		3FADE22524BE78100031728D /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,11 +171,13 @@
 		3F679E5524B6C93A00B2E388 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				3FADE22024BE774E0031728D /* View */,
 				3F679E5C24B6CAE300B2E388 /* Ship.swift */,
 				3F679E5E24B6CB2000B2E388 /* Enemy.swift */,
 				3F679E6024B6CB2E00B2E388 /* Meteor.swift */,
 				3F679E6224B6CF4E00B2E388 /* Comet.swift */,
 				3F679E6424B6CF6300B2E388 /* PowerUps.swift */,
+				3FADE22524BE78100031728D /* Bullet.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -215,6 +221,14 @@
 				3F4EAA5624B53C3F00F07956 /* GameScene.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3FADE22024BE774E0031728D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3FADE22124BE77780031728D /* ButtonNode.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,9 +367,11 @@
 			files = (
 				3F4EAA5724B53C3F00F07956 /* GameScene.swift in Sources */,
 				3F679E5F24B6CB2000B2E388 /* Enemy.swift in Sources */,
+				3FADE22624BE78100031728D /* Bullet.swift in Sources */,
 				3F679E5D24B6CAE300B2E388 /* Ship.swift in Sources */,
 				3F679E6824B6D91200B2E388 /* PhysicsCategory.swift in Sources */,
 				3F4EAA5924B53C3F00F07956 /* GameViewController.swift in Sources */,
+				3FADE22224BE77780031728D /* ButtonNode.swift in Sources */,
 				3F679E6B24B6DEDB00B2E388 /* HomeViewController.swift in Sources */,
 				3F4EAA5124B53C3F00F07956 /* AppDelegate.swift in Sources */,
 				3F679E6324B6CF4E00B2E388 /* Comet.swift in Sources */,
