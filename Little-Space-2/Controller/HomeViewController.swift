@@ -23,9 +23,15 @@ class HomeViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    let backgroundImage: UIImageView = {
+        let back = UIImageView()
+        return back
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.view
     }
 
 }

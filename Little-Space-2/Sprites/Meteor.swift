@@ -17,6 +17,7 @@ enum MeteorType: String, CaseIterable{
 }
 
 class Meteor: SKSpriteNode {
+    
     init(){
         //            let randomTexture = MeteorType.allCases.randomElement()!
 //        let texture = SKTexture(imageNamed: randomTexture.rawValue)
@@ -30,9 +31,13 @@ class Meteor: SKSpriteNode {
         //Physics
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
         self.physicsBody?.isDynamic = true
+        self.physicsBody?.linearDamping = 0
+        self.physicsBody?.friction = 0
+        
         self.physicsBody?.categoryBitMask = PhysicsCategory.Meteor
-        self.physicsBody?.collisionBitMask = PhysicsCategory.Ship
-        self.physicsBody?.contactTestBitMask = PhysicsCategory.Ship
+//        self.physicsBody?.collisionBitMask = PhysicsCategory.Ship
+//        self.physicsBody?.contactTestBitMask = PhysicsCategory.Ship
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,9 +46,36 @@ class Meteor: SKSpriteNode {
     
     func placeMeteor(scene: SKScene){
         if let view = scene.view{
-//            position.x = view.bounds.width
-//            position.x = CGFloat.random(in: 0...view.bounds.width)
-//            position.y = view.bounds.height
+            //            position.x = view.bounds.width
+            self.position.x = CGFloat.random(in: 0...view.bounds.width)
+            self.position.y = CGFloat.random(in: 0...view.bounds.height)
         }
+        let numX = [-13,-12,-11,-10,-9,-8,8,9,10,11,12,13]
+        self.physicsBody?.velocity = CGVector(dx: numX.randomElement()!, dy: numX.randomElement()!)
+    }
+    
+    //MARK: Check Bounds
+    //Not being used
+    func checkBounds(playableArea: CGRect){
+        let bottomLeft = CGPoint(x: 0, y: playableArea.minY)
+        let topRight = CGPoint(x: playableArea.size.width, y: playableArea.maxY)
+        
+        if(self.position.x < bottomLeft.x){
+            self.position.x = topRight.x
+        }
+        
+        
+        if(self.position.y < bottomLeft.y){
+            self.position.y = topRight.y
+        }
+        
+        if(self.position.x > topRight.x){
+            self.position.x = bottomLeft.x
+        }
+        
+        if(self.position.y > topRight.y){
+            self.position.y = bottomLeft.y
+        }
+        
     }
 }

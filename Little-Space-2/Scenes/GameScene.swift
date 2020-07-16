@@ -54,14 +54,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createShip()
         createJoy()
         createButton()
-        
+        createMeteorShower()
+        createLabels()
     }
     
     //MARK: Update
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        lifeLabel.text = "Lives: \(lives)"
+        scoreLabel.text = "Score: \(score)"
         ship.boundsCheckPlayer(playableArea: playableRectArea)
         ship.boundsCheckPlayer2(playableArea: playableRectArea)
+        for node in self.children{
+            if node.name == "meteor" || node.name == "bullet" {
+                let bottomLeft = CGPoint(x: 0, y: playableRectArea.minY)
+                let topRight = CGPoint(x: playableRectArea.size.width, y: playableRectArea.maxY)
+                
+                if(node.position.x < bottomLeft.x){
+                    node.position.x = topRight.x
+                }
+                
+                
+                if(node.position.y < bottomLeft.y){
+                    node.position.y = topRight.y
+                }
+                
+                if(node.position.x > topRight.x){
+                    node.position.x = bottomLeft.x
+                }
+                
+                if(node.position.y > topRight.y){
+                    node.position.y = bottomLeft.y
+                }
+            }
+        }
+//        gameScene.rootNode.childNodes.filter({ $0.name == "Enemy" }).forEach({ $0.removeFromParentNode() })
     }
     
     //MARK: Creation
@@ -77,6 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        let meteor3 = Meteor()
 //        let meteor4 = Meteor()
         meteor.placeMeteor(scene: self)
+        meteor.checkBounds(playableArea: playableRectArea)
         meteor.zPosition = 2
         self.addChild(meteor)
     }
@@ -104,6 +132,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         button.zPosition = 20
         button.name = "button"
         self.addChild(button)
+    }
+    
+    func createMeteorShower(){
+        let wait = SKAction.wait(forDuration: 5)
+        let createObject = SKAction.run{
+            self.createMeteor()
+        }
+        let objects = SKAction.sequence([wait,createObject])
+        let showerObjects = SKAction.repeatForever(objects)
+        self.run(showerObjects)
+    }
+    
+    func createLabels(){
+        lifeLabel.text = "Lives: \(lives)"
+        lifeLabel.fontSize = 20
+        lifeLabel.zPosition = 10
+        lifeLabel.position = CGPoint(x: 20, y: frame.size.height - 20)
+        lifeLabel.horizontalAlignmentMode = .left
+        lifeLabel.verticalAlignmentMode = .top
+        self.addChild(lifeLabel)
+        
+        scoreLabel.text = "Score: \(score)"
+        scoreLabel.fontSize = 20
+        scoreLabel.zPosition = 10
+        scoreLabel.position = CGPoint(x: frame.size.width - 20, y: frame.size.height - 20)
+        scoreLabel.horizontalAlignmentMode = .right
+        scoreLabel.verticalAlignmentMode = .top
+        self.addChild(scoreLabel)
     }
         
     
@@ -155,18 +211,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             ship.zRotation = angle - 1.570796
             
-//            ship.move(velocity: CGPoint(x: xDist + ship.position.x, y: yDist + ship.position.y))
-//            ship.startEngine()
-            
-//                        ship.physicsBody?.applyForce(CGVector(dx: 1, dy: 0), at: ship.position)
-//            ship.physicsBody?.angularVelocity = angle - 1.570796
             
         }
-        
-        //        ship.physicsBody?.velocity = CGVector(dx: (-0.5) * (startTouchPos.x - currentTouchPos.x), dy: -0.5 * (startTouchPos.y-currentTouchPos.y))
-        
-        
-        
     }
 //    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -193,11 +239,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        let xDist:CGFloat = sin(angle - 1.570796) * length
 //        let yDist:CGFloat = cos(angle - 1.570796) * length
         
-        let action = SKAction.move(to: CGPoint(x: 100 * cos(bullet.zRotation) + bullet.position.x, y: 100 * sin(bullet.zRotation) + bullet.position.y), duration: 1)
+        let action = SKAction.move(to: CGPoint(x: 500 * cos(ship.zRotation) + bullet.position.x, y: 500 * sin(ship.zRotation) + bullet.position.y), duration: 1)
         let actionDone = SKAction.removeFromParent()
         bullet.run(SKAction.sequence([action, actionDone]))
     
         self.addChild(bullet)
+    }
+    
+    //MARK: Game Over
+    func gameOver(){
+        
     }
     
     
@@ -214,4 +265,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //    }
     //
 
+    
+    //MARK: Collision Detection
+    func didBegin(_ contact: SKPhysicsContact) {
+        let collision: UInt32 = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        //2
+        if collision == PhysicsCategory.Meteor | PhysicsCategory.Bullet {
+            print("Meteor Destroyed")
+            self.score += 10
+            contact.bodyA.node?.removeFromParent()
+            contact.bodyB.node?.removeFromParent()
+            
+            //            if (contact.bodyA.node?.isKind(of: Junk.self))!{
+            //                contact.bodyA.node?.removeFromParent()
+            //            }else if (contact.bodyB.node?.isKind(of: Junk.self))!{
+            //                contact.bodyB.node?.removeFromParent()
+            //            }
+            
+        }else if collision == PhysicsCategory.Ship | PhysicsCategory.Meteor {
+            print("Collision with Meteor")
+            self.lives -= 1
+            //            self.run(crash)
+            
+            if (contact.bodyA.node?.isKind(of: Meteor.self))!{
+                //                let pso = contact.bodyA.node?.position
+                //                let mplosion = SKEmitterNode(fileNamed: "mExplosion.sks")!
+                //                mplosion.position = pso!
+                //                mplosion.zPosition = 1
+                //                self.addChild(mplosion)
+                contact.bodyA.node?.removeFromParent()
+            }else if (contact.bodyB.node?.isKind(of: Meteor.self))!{
+                //                let pso = contact.bodyB.node?.position
+                //                let mplosion = SKEmitterNode(fileNamed: "mExplosion.sks")!
+                //                mplosion.position = pso!
+                //                mplosion.zPosition = 1
+                //                self.addChild(mplosion)
+                contact.bodyB.node?.removeFromParent()
+            }
+        }
+    }
 }

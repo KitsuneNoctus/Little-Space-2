@@ -24,9 +24,9 @@ class Ship: SKSpriteNode {
         self.name = "ship"
         self.zPosition = 4
         
-        fireEmitter.position = CGPoint(x: self.position.x, y: self.position.y - self.size.height/2)
-        fireEmitter.zPosition = -1
-        self.addChild(fireEmitter)
+//        fireEmitter.position = CGPoint(x: self.position.x, y: self.position.y - self.size.height/2)
+//        fireEmitter.zPosition = -1
+//        self.addChild(fireEmitter)
         
         //            let fireEmitter = SKEmitterNode(fileNamed: "boosterFire.sks")!
         //            fireEmitter.position = CGPoint(x: self.position.x, y: self.position.y - self.size.height/2)
