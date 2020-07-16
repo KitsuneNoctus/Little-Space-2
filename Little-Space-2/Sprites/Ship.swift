@@ -36,8 +36,8 @@ class Ship: SKSpriteNode {
         
         //Physics
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
-        self.physicsBody?.isDynamic = true
-        self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.affectedByGravity = false
         self.physicsBody?.linearDamping = 0
         self.physicsBody?.restitution = 0
         self.physicsBody?.categoryBitMask = PhysicsCategory.Ship
