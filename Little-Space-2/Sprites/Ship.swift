@@ -15,6 +15,7 @@ import GameplayKit
 class Ship: SKSpriteNode {
     
     let fireEmitter = SKEmitterNode(fileNamed: "rocket.sks")!
+    let blast = SKAction.playSoundFileNamed("blaster.mp3", waitForCompletion: false)
     
     init() {
         let texture = SKTexture(imageNamed: "shipV1")
@@ -48,6 +49,12 @@ class Ship: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Sounds
+    func blaster(){
+        self.run(blast)
+    }
+    
+    //MARK: Move / Engine
     func startEngine(){
         
     }

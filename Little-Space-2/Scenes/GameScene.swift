@@ -30,6 +30,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var stickActive:Bool = false
     
+    //MARK: Init Sounds
+    let music = SoundPlayer()
+    
     //MARK: Did Move
     override func didMove(to view: SKView) {
         let space = SKSpriteNode(imageNamed: "spaceBack")
@@ -56,6 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createButton()
         createMeteorShower()
         createLabels()
+        music.playMusic("background.mp3")
     }
     
     //MARK: Update
@@ -242,7 +246,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let action = SKAction.move(to: CGPoint(x: 500 * cos(ship.zRotation) + bullet.position.x, y: 500 * sin(ship.zRotation) + bullet.position.y), duration: 1)
         let actionDone = SKAction.removeFromParent()
         bullet.run(SKAction.sequence([action, actionDone]))
-    
+        ship.blaster()
         self.addChild(bullet)
     }
     

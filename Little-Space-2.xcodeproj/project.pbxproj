@@ -28,6 +28,9 @@
 		3F679E6B24B6DEDB00B2E388 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F679E6A24B6DEDB00B2E388 /* HomeViewController.swift */; };
 		3FADE22224BE77780031728D /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADE22124BE77780031728D /* ButtonNode.swift */; };
 		3FADE22624BE78100031728D /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADE22524BE78100031728D /* Bullet.swift */; };
+		3FFA615C24C104F700BB12FA /* blaster.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA615B24C104F700BB12FA /* blaster.mp3 */; };
+		3FFA615E24C1067D00BB12FA /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA615D24C1067D00BB12FA /* SoundPlayer.swift */; };
+		3FFA616024C1095B00BB12FA /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA615F24C1095B00BB12FA /* background.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		3F679E6A24B6DEDB00B2E388 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3FADE22124BE77780031728D /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		3FADE22524BE78100031728D /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		3FFA615B24C104F700BB12FA /* blaster.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blaster.mp3; sourceTree = "<group>"; };
+		3FFA615D24C1067D00BB12FA /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		3FFA615F24C1095B00BB12FA /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +191,9 @@
 		3F679E5624B6C95000B2E388 /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
+				3FFA615F24C1095B00BB12FA /* background.mp3 */,
+				3FFA615B24C104F700BB12FA /* blaster.mp3 */,
+				3FFA615D24C1067D00BB12FA /* SoundPlayer.swift */,
 			);
 			path = "Sound Effects";
 			sourceTree = "<group>";
@@ -338,6 +347,8 @@
 				3F4EAA5C24B53C3F00F07956 /* Main.storyboard in Resources */,
 				3F4EAA5E24B53C4200F07956 /* Assets.xcassets in Resources */,
 				3F679E5A24B6CA7300B2E388 /* rocket.sks in Resources */,
+				3FFA615C24C104F700BB12FA /* blaster.mp3 in Resources */,
+				3FFA616024C1095B00BB12FA /* background.mp3 in Resources */,
 				3F679E5B24B6CA7300B2E388 /* Assets.xcassets in Resources */,
 				3F4EAA6124B53C4200F07956 /* LaunchScreen.storyboard in Resources */,
 				3F4EAA5524B53C3F00F07956 /* Actions.sks in Resources */,
@@ -373,6 +384,7 @@
 				3F4EAA5924B53C3F00F07956 /* GameViewController.swift in Sources */,
 				3FADE22224BE77780031728D /* ButtonNode.swift in Sources */,
 				3F679E6B24B6DEDB00B2E388 /* HomeViewController.swift in Sources */,
+				3FFA615E24C1067D00BB12FA /* SoundPlayer.swift in Sources */,
 				3F4EAA5124B53C3F00F07956 /* AppDelegate.swift in Sources */,
 				3F679E6324B6CF4E00B2E388 /* Comet.swift in Sources */,
 				3F679E6524B6CF6300B2E388 /* PowerUps.swift in Sources */,
