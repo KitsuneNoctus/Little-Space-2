@@ -92,8 +92,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-//        gameScene.rootNode.childNodes.filter({ $0.name == "Enemy" }).forEach({ $0.removeFromParentNode() })
     }
+    
+    //MARK: Did Evaluate Actions
+    override func didEvaluateActions() {
+            if lives < 0{
+                gameOver()
+            }
+        }
     
     //MARK: Creation
     func createShip(){
@@ -252,7 +258,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //MARK: Game Over
     func gameOver(){
-        
+        let gameOverScene = GameOverScene(size: (self.view?.bounds.size)!)
+        gameOverScene.scaleMode = .aspectFill
+        gameOverScene.endScore = self.score
+        let crossFade = SKTransition.crossFade(withDuration: 0.75)
+        view?.presentScene(gameOverScene, transition: crossFade)
     }
     
     
@@ -278,14 +288,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if collision == PhysicsCategory.Meteor | PhysicsCategory.Bullet {
             print("Meteor Destroyed")
             self.score += 10
+            if (contact.bodyA.node?.isKind(of: Meteor.self))!{
+                let pos = contact.bodyA.node?.position
+                let mplosion = SKEmitterNode(fileNamed: "destruction.sks")!
+                mplosion.position = pos!
+                mplosion.zPosition = 1
+                self.addChild(mplosion)
+                contact.bodyA.node?.removeFromParent()
+            }else if (contact.bodyB.node?.isKind(of: Meteor.self))!{
+                let pos = contact.bodyA.node?.position
+                let mplosion = SKEmitterNode(fileNamed: "destruction.sks")!
+                mplosion.position = pos!
+                mplosion.zPosition = 1
+                self.addChild(mplosion)
+                contact.bodyA.node?.removeFromParent()
+            }
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
-            
-            //            if (contact.bodyA.node?.isKind(of: Junk.self))!{
-            //                contact.bodyA.node?.removeFromParent()
-            //            }else if (contact.bodyB.node?.isKind(of: Junk.self))!{
-            //                contact.bodyB.node?.removeFromParent()
-            //            }
             
         }else if collision == PhysicsCategory.Ship | PhysicsCategory.Meteor {
             print("Collision with Meteor")

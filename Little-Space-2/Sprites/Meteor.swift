@@ -35,8 +35,8 @@ class Meteor: SKSpriteNode {
         self.physicsBody?.friction = 0
         
         self.physicsBody?.categoryBitMask = PhysicsCategory.Meteor
-//        self.physicsBody?.collisionBitMask = PhysicsCategory.Ship
-//        self.physicsBody?.contactTestBitMask = PhysicsCategory.Ship
+        self.physicsBody?.collisionBitMask = PhysicsCategory.Ship | PhysicsCategory.Bullet
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.Ship | PhysicsCategory.Bullet
         
     }
     
