@@ -47,8 +47,17 @@ class Meteor: SKSpriteNode {
     func placeMeteor(scene: SKScene){
         if let view = scene.view{
             //            position.x = view.bounds.width
-            self.position.x = CGFloat.random(in: 0...view.bounds.width)
-            self.position.y = CGFloat.random(in: 0...view.bounds.height)
+            let posx = CGFloat.random(in: 0...view.bounds.width/2 - 50)
+            let posx2 = CGFloat.random(in: view.bounds.width/2 + 50...view.bounds.width)
+            
+            let posy = CGFloat.random(in: 0...view.bounds.height)
+            let posy2 = CGFloat.random(in: 0...view.bounds.height)
+            
+            let posXs = [posx,posx2]
+            let posYs = [posy,posy2]
+            
+            self.position.x = posXs.randomElement()!
+            self.position.y = posYs.randomElement()!
         }
         let numX = [-13,-12,-11,-10,-9,-8,8,9,10,11,12,13]
         self.physicsBody?.velocity = CGVector(dx: numX.randomElement()!, dy: numX.randomElement()!)
