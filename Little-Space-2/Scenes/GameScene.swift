@@ -207,8 +207,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let xDist:CGFloat = sin(angle - 1.570796) * length
             let yDist:CGFloat = cos(angle - 1.570796) * length
-            print(xDist)
-            print(yDist)
+//            print(xDist)
+//            print(yDist)
             
             if base.frame.contains(currentTouchPos){
                 ball.position = currentTouchPos
@@ -243,10 +243,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bullet.zRotation = ship.zRotation
         bullet.zPosition = ship.zPosition - 1
         
-//        let xDist:CGFloat = sin(angle - 1.570796) * length
-//        let yDist:CGFloat = cos(angle - 1.570796) * length
-        
-        let action = SKAction.move(to: CGPoint(x: 500 * cos(ship.zRotation) + bullet.position.x, y: 500 * sin(ship.zRotation) + bullet.position.y), duration: 1)
+        let action = SKAction.move(to: CGPoint(x: 500 * cos(ship.zRotation + 1.570796) + bullet.position.x, y: 500 * sin(ship.zRotation + 1.570796) + bullet.position.y), duration: 1)
+
         let actionDone = SKAction.removeFromParent()
         bullet.run(SKAction.sequence([action, actionDone]))
         ship.blaster()
