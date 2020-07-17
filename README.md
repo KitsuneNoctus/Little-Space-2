@@ -9,12 +9,12 @@ Make School &amp; Personal | MOB 2-2 | Final &amp; Personal Project
 Download project [here!](https://github.com/KitsuneNoctus/Little-Space-2/archive/master.zip)
 
 ## How You Play
-![game gif 1](game1.gif)
+![game gif 1](Gifs/game1.gif)
 > Your ship remains center of the screen. Use the joystick to turn your ship and aim at the oncoming meteors
 > Use the fire button to shoot your cannon and destroy the meteors to rack up points
 
 ## Game Over
-![game gif 2](game2.gif)
+![game gif 2](Gifs/game2.gif)
 > Don't get hit too much! 3 Lives to use and the one you start with, you can only take so much. Lose it all and its game over. 
 > Do you wanna play again?
 
