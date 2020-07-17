@@ -11,27 +11,19 @@ import SpriteKit
 import GameplayKit
 
 class HomeViewController: UIViewController {
+    @IBOutlet weak var playButton: UIButton!
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let startButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    let backgroundImage: UIImageView = {
-        let back = UIImageView()
-        return back
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.view
     }
-
+    @IBAction func play(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "gameViewController") as! GameViewController
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
+    
 }

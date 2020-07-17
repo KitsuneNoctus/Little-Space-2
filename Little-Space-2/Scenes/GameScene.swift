@@ -110,9 +110,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createMeteor(){
         let meteor = Meteor()
-//        let meteor2 = Meteor()
-//        let meteor3 = Meteor()
-//        let meteor4 = Meteor()
         meteor.placeMeteor(scene: self)
         meteor.checkBounds(playableArea: playableRectArea)
         meteor.zPosition = 2

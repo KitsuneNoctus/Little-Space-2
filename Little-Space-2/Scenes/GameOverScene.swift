@@ -33,6 +33,8 @@ class GameOverScene: SKScene {
         space.size = UIScreen.main.bounds.size
         space.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
         self.addChild(space)
+        setupScreen()
+        createButton()
     }
     
     //MARK: Setup
@@ -52,13 +54,30 @@ class GameOverScene: SKScene {
         scoreLabel.horizontalAlignmentMode = .center
         scoreLabel.verticalAlignmentMode = .center
         self.addChild(scoreLabel)
+    }
+    
+    func createButton(){
+        let buttonTexture = SKTexture(imageNamed: "buttonRed1")
+        let buttonSelected = SKTexture(imageNamed: "buttonRed2")
         
-        
+        let button = ButtonNode(normalTexture: buttonTexture, selectedTexture: buttonSelected, disabledTexture: buttonTexture)
+        button.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameOverScene.playAgain))
+        button.setButtonLabel(title: "Play Again?", font: "Helvetica", fontSize: 20)
+        button.size = CGSize(width: 150, height: 75)
+        button.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        button.zPosition = 20
+        button.name = "button"
+        self.addChild(button)
     }
     
     //MARK: Objective Actions
     @objc func playAgain(){
-        
+        let gameScene = GameScene(size: (self.view?.bounds.size)!)
+        gameScene.scaleMode = .aspectFill
+        let crossFade = SKTransition.crossFade(withDuration: 0.75)
+        if let spriteview = self.view{
+            spriteview.presentScene(gameScene, transition: crossFade)
+        }
     }
     
     @objc func goHome(){
