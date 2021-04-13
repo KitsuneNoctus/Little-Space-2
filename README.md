@@ -88,3 +88,6 @@ Action/ Shooter - Infinite Screen
     
 ### Visual Style
 The core style will be the fact that it is 2D. The main visual themes behind the game are gonna be space themed primarily, with spaceships, meteors, asteroids, aliens and what not. Designs are to be kept simple, but still appealing to the user. A less is more type of vibe
+
+### License
+Distributed under the MIT License. See LICENSE for more information.
